@@ -1,0 +1,129 @@
+//the parent class
+import java.lang.*;
+public abstract class PolybeGone implements Comparable{
+	// Declaring PIVs
+	private int sides;
+	private double sideLen;
+	private String color;
+	private String name;
+
+	public PolybeGone(){
+		sides=0;
+		sideLen=0.0;
+		color="";
+		name="";
+	}
+	public PolybeGone(int Sidenum, double length, String Thecolor, String Thename){
+		sides= Sidenum;
+		sideLen=length;
+		color=Thecolor;
+		name=Thename;
+
+
+	}
+
+	public int getSides(){
+		return sides;
+	}
+	public double getLength(){
+		return sideLen;
+	}
+	public String getColor(){
+		return color;
+	}
+	public String getName(){
+		return name;
+	}
+
+	public void setSides(int s){
+		sides= s ;
+
+	}
+	public void setLength(double a){
+		sideLen= a;
+
+	}
+	public void setColor(String c){
+		color= c;
+
+	}
+	public void setName(String n){
+		name=n;
+
+	}
+
+		public abstract double area();
+	public String toString(){
+		return "This polygons number of sides are:"+sides+"and the parameter is"+sides*sideLen;
+	}
+	public int compareTo(Object otherPolybeGone)
+	{
+		return (int)this.area() - (int)((PolybeGone)otherPolybeGone).area();
+	}
+	public boolean equals(Object other)
+	{
+	if(getSides()==((PolybeGone)other).getSides()&& getName()==((PolybeGone)other).getName()&&getColor()==((PolybeGone)other).getColor() && getLength()==((PolybeGone)other).getLength())
+	return true;
+		else
+			return false;
+	}
+
+}
+ class Squarez extends PolybeGone{
+	public Squarez(int a, double b, String n, String c){
+		super(a,b,c,n);
+		setSides(4);
+
+	}public double area(){
+		return getLength()*getLength();
+
+	}
+}
+ class Hexagon extends PolybeGone{
+	public Hexagon(int a, double b, String n, String c){
+		super(a,b,c,n);
+		setSides(6);
+
+	}public double area(){
+		return 6*(getLength()/2)*(getLength()/2)* Math.sqrt(3);
+	}
+}
+ class EqualTri extends PolybeGone{
+	public EqualTri(int a, double b, String n, String c){
+		super(a,b,c,n);
+		setSides(3);
+
+	}public double area(){
+		return getSides()/ 2*2*Math.sqrt(3);
+	}
+}
+ class RiTri extends PolybeGone{
+	public RiTri(int a, double b, String n, String c, int Base, int Height, int Hypot){
+		super(a,b,c,n);
+		setSides(3);
+		Base= 5;
+		Height=12;
+		Hypot=5*5+12*12;
+	}
+	public double area(){
+		return 5*12/2;
+	}
+}
+// Create 4 Polygons reference variables, each will point at a different subclass
+//object.
+//- Call and display the appropriate toString for each object.
+//- Use comapareTo to determine which element has the biggest area.
+//- Finally, create a second Hexagon Object with a Polygons reference type, that
+//has the same values as your first Hexagon object. Use your equals method to
+//demonstrate that this object does equal the other Hexagon, but does not equal
+//the square
+ class Test {
+ 	public static void main (String [] args) {
+
+	PolybeGone Square= new Squarez(2,2,"test","test");
+	PolybeGone Helpagon=new Hexagon(2,2,"test","test");
+	PolybeGone ETri= new EqualTri(2,2,"test","test");
+	PolybeGone RTri= new RiTri(2,2,"test","test",2,2,2);
+	}
+ 	
+		}
